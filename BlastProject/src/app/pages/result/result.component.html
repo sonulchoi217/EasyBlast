@@ -1,0 +1,93 @@
+<div style="text-align:center">
+    <h1 class="display-1" style="padding: 20px">Easy BLAST</h1>
+    <h4>Running BLAST has never been this easy</h4>
+
+</div>
+<br/>
+
+<div *ngIf="loaded">
+    <br/>
+    <div class="color-box-container">
+        <h5>Color Key for Alignment Score</h5>
+        <div class="color-box" style="background-color: #545C66;"></div>
+        <span class="color-box-text"> < 40</span>
+        <div class="color-box" style="background-color: #5498F9;"></div>
+        <span class="color-box-text"> 40 - 50</span>
+        <div class="color-box" style="background-color: #54F9A4;"></div>
+        <span class="color-box-text"> 50 - 80 </span>
+        <div class="color-box" style="background-color: #CC54F9;"></div>
+        <span class="color-box-text">80 - 200</span>
+        <div class="color-box" style="background-color: #F97154;"></div>
+        <span class="color-box-text">>= 200</span>
+    </div>
+    <br/>
+    <div class="buttonContainer">
+        <button class = "btn btn-primary selectAllButton" (click)='onSelectAll()'>Select All</button>
+        <button class = "btn btn-primary downloadButton" (click)='onDownloadClick()'>Download Selected Sequences</button>
+    </div>
+    <br/>
+    <div class="resultContainer">
+        <div class= "targetRow">
+            <div class="targetNameColumn">
+            </div>
+            <div class="targetDataColumn">
+            </div>
+        </div>
+        <div class = "result">
+            <div class= "resultRowEven">
+                <div class = "resultNameColumn">
+                    <a class="organism"> Query</a>
+                </div>
+                <div class = "resultDataColumn">
+                    <div class = "resultHit">
+                            <a  [title]="queryData.name">
+                                <svg width="1500" height="30">
+                                    <rect 
+                                    [attr.x]="0" 
+                                    [attr.width]="std" 
+                                    height="15" 
+                                    style="fill:blue;stroke-width:10;stroke:pink;stroke-width:3px;opacity:0.5" />
+                                </svg>
+                            </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class = "result" *ngFor = "let result of resultData; let index = index; let isOdd = odd; let isEven = even">
+                <div [class.resultRowOdd] = "isOdd" [class.resultRowEven] = "isEven">
+                    <div class = "resultNameColumn">
+                        <a class="organism" [routerLink]="'/detail/'+result.name">{{result.name}}</a>
+                    </div>
+                    <div class = "resultDataColumn">
+                        <div class = "resultHit" *ngFor="let hit of result.hits">
+                            <div style="position: relative; width: 0; height: 0">
+                                    <mat-checkbox class="checkBox" [(ngModel)]="seqToDownload[hit.title]"></mat-checkbox>
+                            </div>
+                            <a 
+                            [matTooltip]="'name : ' + hit.title +'&#13;length: '+hit.align_length + '&#13;e-value : ' + hit.e_value + '&#13;score : '+ hit.score" 
+                            matTooltipPosition = "left"
+                            [routerLink]="'/detail/'+hit.title">
+                                <svg width="1500" height="20">
+                                    <rect 
+                                    [attr.x]="hit.query_start*std/queryData.length" 
+                                    [attr.width]="hit.align_length*std/queryData.length" 
+                                    height="10" [style.fill] = "scoreToColor(hit.score)" 
+                                    style="stroke-width:10;stroke:pink;stroke-width:3px;opacity:0.5" />
+                                </svg>
+                            </a>
+                        </div>
+                        <div *ngIf="result.hits.length == 0">
+                            <p class="description">No hits found</p>
+                        </div>
+                    </div>
+                
+                </div>
+        </div>
+    </div>
+
+</div>
+<div *ngIf="!loaded">
+    <img class="center" alt="Loading..." src="/assets/images/loading.gif" />
+</div>
+

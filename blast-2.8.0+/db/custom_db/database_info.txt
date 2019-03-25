@@ -1,0 +1,15 @@
+Babesia_bovis_T2Bo
+Cryptosporidium_hominis
+Cryptosporidium_muris
+Cryptosporidium_parvum_Iowa_II
+Neospora_caninum
+Plasmodium_berghei_ANKA
+Plasmodium_chabaudi
+Plasmodium_falciparum_3D7
+Plasmodium_knowlesi_strain_H
+Plasmodium_vivax_Sal-1
+Plasmodium_yoelii_yoelii
+Theileria_annulata
+Theileria_parva
+Toxoplasma_gondii_GT1
+Toxoplasma_gondii_ME49

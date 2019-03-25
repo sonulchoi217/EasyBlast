@@ -1,0 +1,84 @@
+
+<div style="text-align:center">
+  <h1 class="display-1" style="padding: 20px">Easy BLAST</h1>
+  <h4>Running BLAST has never been this easy</h4>
+</div>
+<br/>
+<br/>
+<!-- 
+<div class="container">
+  <div class="row">    
+      <div class="col-xs-8 col-xs-offset-2">
+        <div class="input-group">
+              <input type="hidden" name="search_param" value="all" id="search_param">         
+              <input #searchSequence type="text" style="width: 900px" class="form-control" name="x" placeholder="Search your sequence of interest in FASTA format...">
+              <span class="input-group-btn">
+                  <a routerLink="/results"><button class="btn btn-default" type="button" (click)="onSearch(searchSequence.value)">Search</button></a>
+              </span>
+          </div>
+      </div>
+  </div>
+</div> -->
+<div align="center" >
+  <!-- <h5 style="padding: 10px">Or</h5> -->
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div class ="form-group">
+      <h5>Upload protein sequence of interest in fasta format</h5>
+      <br/>
+      <input 
+      type="file"
+      id="file" 
+      (change)="fileUploaded($event)"
+      ngModel
+      name="file" 
+      accept=".fasta"
+      required
+      #file>
+      <button 
+    type="submit" 
+    class="btn btn-primary"
+    style="display: inline-block"
+    [disabled]="!f.valid">Submit</button>
+      <br/>
+      <br/>
+      <br/>
+      <h6 style="display: inline; margin: 10px">E-value limit (default is 1e-5)</h6>
+      <input 
+      type="text" 
+      id="e_value" 
+      name="e_value" 
+      [placeholder]="'1e-5'" 
+      pattern = "^([0-9]+e[-]?[0-9]+)?$"
+      ngModel>
+    </div>
+    <div class ="form-group">
+        <br/>
+        <h6>Define your desired area of search</h6>
+
+        
+      </div>
+  </form>
+  
+</div>
+<div class="checkboxContainer">
+  <div class="level1">
+      <mat-checkbox class="checkBox" [(ngModel)]="database.All"  (change)=onAllSelected($event)>All</mat-checkbox>
+      <div class="level2">
+        <mat-checkbox class="checkBox" [(ngModel)]="database.Excavata">Excavata</mat-checkbox>
+        <mat-checkbox class="checkBox" [(ngModel)]="database.SAR">SAR (Stramenopila/Alveolata/Rhizaria)</mat-checkbox>
+        <mat-checkbox class="checkBox" [(ngModel)]="database.Amoebozoa">Amoebozoa</mat-checkbox>
+        <mat-checkbox class="checkBox" [(ngModel)]="database.Other">Other (Apusozoa, Cryptomonads, Haptophytes)</mat-checkbox>
+        <mat-checkbox class="checkBox" [(ngModel)]="database.Opisthokonts" (change)=onOpisthokontsSelected($event)>Opisthokonts</mat-checkbox>
+      <div class="level3">
+          <mat-checkbox class="checkBox" [(ngModel)]="database.Fungi" (change)=onFungiSelected($event)>Fungi</mat-checkbox>
+          <div class="level4">
+            <mat-checkbox class="checkBox" [(ngModel)]="database.Ascomycota">Ascomycota</mat-checkbox>
+            <mat-checkbox class="checkBox" [(ngModel)]="database.Basidiomycota">Basidiomycota</mat-checkbox>
+            <mat-checkbox class="checkBox" [(ngModel)]="database.Other_fungi">Other fungi</mat-checkbox>
+          </div>
+          <mat-checkbox class="checkBox" [(ngModel)]="database.Metazoans_Choanoflagellate_Ichthyosporea">Metazoans + Choanoflagellate + Ichthyosporea</mat-checkbox>
+      </div>
+        <mat-checkbox class="checkBox" [(ngModel)]="database.Plantae">Plantae</mat-checkbox>
+    </div>
+  </div>
+</div>

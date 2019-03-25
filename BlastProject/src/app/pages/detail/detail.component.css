@@ -1,0 +1,46 @@
+
+.resultBoxContainer{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.resultBox{
+    display: flex;
+}
+
+.resultBoxName{
+    flex: 1;
+}
+
+.resultBoxData{
+    flex: 3;
+}
+
+.monoSpace{
+    font-family: monospace;
+    white-space: pre;
+    padding : 0;
+    margin : 0;
+}
+
+.matchContainer{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.matchRow{
+    display: flex;
+    width: 100%;
+    position: relative;
+
+}
+
+.matchNameColumn{
+    flex: 1;
+}
+
+.matchSequenceColumn{
+    flex: 15;
+}

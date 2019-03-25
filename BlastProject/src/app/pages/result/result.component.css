@@ -1,0 +1,99 @@
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+}
+
+.organism{
+    font-size: 20px;
+}
+
+.description{
+    font-size: 20px;
+}
+
+.resultContainer{
+    width: 90%;
+    position: relative;
+    margin: 0 auto;
+}
+.result{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.resultRowOdd{
+    background: 	#DCDCDC;
+    display: flex;
+    width: 100%;
+    position: relative;
+
+}
+.resultRowEven{
+    display: flex;
+    width: 100%;
+    position: relative;
+
+}
+
+.resultNameColumn{
+    flex: 3;
+    word-wrap: break-word;
+    width: 30%;
+
+}
+
+.resultDataColumn{
+    display: flex;
+    flex-direction: column;
+    flex: 7;
+    width: 70%;
+}
+
+.checkBox{
+    position: relative;
+    right: 30px;
+}
+
+::ng-deep .mat-tooltip {
+    /* your own custom styles here */ 
+    /* e.g. */
+    color: black !important;
+    background-color: #8BD0E7 !important;
+    font-size: 20px !important;
+    max-width: 700px !important;
+    white-space: pre-line !important;
+}
+
+.downloadButton{
+    position: relative;
+    left: 150px;
+}
+
+.selectAllButton{
+    position: relative;
+    right: 200px;
+}
+
+.buttonContainer{
+    text-align: center;
+}
+
+
+.color-box{
+    width: 15px;
+    height: 15px;
+    display: inline-block
+}
+
+.color-box-text{
+    font-size: 20px;
+    margin-left: 5px;
+    margin-right: 40px;
+}
+
+.color-box-container{
+    text-align: center;
+}
