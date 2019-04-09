@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
 
 
   database;
+  categories;
   data;
 
   constructor(
@@ -32,54 +33,160 @@ export class HomeComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    this.categories = ["All", "Amoebozoa", "Animals", "Apusozoa", "Choanoflagellates", "Fungi", "Ichthyosporea", "Plants", "Protists"]
     this.database = {
-      Excavata: true,
-      SAR: true,
-      Amoebozoa: true,
-      Other: true,
-      Opisthokonts: true,
-      Ascomycota: true,
-      Basidiomycota: true,
-      Other_fungi: true,
-      Metazoans_Choanoflagellate_Ichthyosporea: true,
-      Plantae: true,
       All: true,
-      Fungi: true
+      Amoebozoa: true,      
+      Dictyostelium: true,      
+      Entamoeba: true,      
+      Animals: true,
+      Animal_others: true,      
+      Annelida: true,      
+      Arthropods: true,      
+      Ascidians: true,      
+      Cnidarian: true,      
+      Echinoderms: true,      
+      Flatworms: true,      
+      Mollusks: true,      
+      Nematodes: true,      
+      Placozoans: true,
+      Rotifers: true,      
+      Vertebrates: true,      
+      Apusozoa: true,      
+      Thecamonas: true,      
+      Choanoflagellates: true,      
+      Codonosigidae: true,      
+      Fungi: true,      
+      Ascomycetes: true,      
+      Basidiomycetes: true,      
+      Chytridiomycetes: true,      
+      Fungi_others: true,      
+      Ichthyosporea: true,      
+      Capsaspora: true,      
+      Ichthyosporea_others: true,      
+      Plants: true,      
+      Eudicots: true,      
+      Green_algae: true,      
+      Gymnosperms: true,      
+      Monocots: true,     
+      Mosses: true,      
+      Plant_others: true,      
+      Spikemosses: true,     
+      Protists: true,     
+      Aveolates: true,      
+      Euglenozoa: true,     
+      Protists_others: true,     
+      Red_algae: true,
+      Stramenopiles: true,
     }
   }
 
   onAllSelected(e){
     let val = e.checked;
-    this.database.Excavata = val;
-    this.database.SAR = val;
-    this.database.Amoebozoa = val;
-    this.database.Other = val;
-    this.database.Opisthokonts = val;
-    this.database.Ascomycota = val;
-    this.database.Basidiomycota = val;
-    this.database.Other_fungi = val;
-    this.database.Metazoans_Choanoflagellate_Ichthyosporea = val;
-    this.database.Plantae = val;
-    this.database.Fungi = val;
-
+    this.database.Amoebozoa= val;
+    this.database.Dictyostelium= val;
+    this.database.Entamoeba= val;
+    this.database.Animals= val;
+    this.database.Animal_others= val;
+    this.database.Annelida= val;
+    this.database.Arthropods= val;
+    this.database.Ascidians= val;
+    this.database.Cnidarian= val;
+    this.database.Echinoderms= val;
+    this.database.Flatworms= val;
+    this.database.Mollusks= val;
+    this.database.Nematodes= val;
+    this.database.Placozoans= val;
+    this.database.Rotifers= val;
+    this.database.Vertebrates= val;
+    this.database.Apusozoa= val;
+    this.database.Thecamonas= val;
+    this.database.Choanoflagellates= val;
+    this.database.Codonosigidae= val;
+    this.database.Fungi= val;
+    this.database.Ascomycetes= val;
+    this.database.Basidiomycetes= val;
+    this.database.Chytridiomycetes= val;
+    this.database.Fungi_others= val;
+    this.database.Ichthyosporea= val;
+    this.database.Capsaspora= val;
+    this.database.Ichthyosporea_others= val;
+    this.database.Plants= val;
+    this.database.Eudicots= val;
+    this.database.Green_algae= val;
+    this.database.Gymnosperms= val;
+    this.database.Monocots= val;
+    this.database.Mosses= val;
+    this.database.Plant_others= val;
+    this.database.Spikemosses= val;
+    this.database.Protists= val;
+    this.database.Aveolates= val;
+    this.database.Euglenozoa= val;
+    this.database.Protists_others= val;
+    this.database.Red_algae= val;
+    this.database.Stramenopiles= val;
   }
 
-  onOpisthokontsSelected(e){
+  onAmoebozoaSelected(e){
     let val = e.checked;
-    this.database.Ascomycota = val;
-    this.database.Basidiomycota = val;
-    this.database.Other_fungi = val;
-    this.database.Metazoans_Choanoflagellate_Ichthyosporea = val;
-    this.database.Fungi = val;
-    
+    this.database.Dictyostelium= val;
+    this.database.Entamoeba= val;
   }
 
+  onAnimalsSelected(e){
+    let val = e.checked;
+    this.database.Animal_others= val;
+    this.database.Annelida= val;
+    this.database.Arthropods= val;
+    this.database.Ascidians= val;
+    this.database.Cnidarian= val;
+    this.database.Echinoderms= val;
+    this.database.Flatworms= val;
+    this.database.Mollusks= val;
+    this.database.Nematodes= val;
+    this.database.Placozoans= val;
+    this.database.Rotifers= val;
+    this.database.Vertebrates= val;
+  }
+  onApusozoaSelected(e){
+    let val = e.checked;
+    this.database.Thecamonas= val;
+  }
+  onChoanoflagellatesSelected(e){
+    let val = e.checked;
+    this.database.Codonosigidae= val;
+  }
   onFungiSelected(e){
     let val = e.checked;
-    this.database.Ascomycota = val;
-    this.database.Basidiomycota = val;
-    this.database.Other_fungi = val;
+    this.database.Ascomycetes= val;
+    this.database.Basidiomycetes= val;
+    this.database.Chytridiomycetes= val;
+    this.database.Fungi_others= val;
   }
+  onIchthyosporeaSelected(e){
+    let val = e.checked;
+    this.database.Capsaspora= val;
+    this.database.Ichthyosporea_others= val;
+  }
+  onPlantsSelected(e){
+    let val = e.checked;
+    this.database.Eudicots= val;
+    this.database.Green_algae= val;
+    this.database.Gymnosperms= val;
+    this.database.Monocots= val;
+    this.database.Mosses= val;
+    this.database.Plant_others= val;
+    this.database.Spikemosses= val;
+  }
+  onProtistsSelected(e){
+    let val = e.checked;
+    this.database.Aveolates= val;
+    this.database.Euglenozoa= val;
+    this.database.Protists_others= val;
+    this.database.Red_algae= val;
+    this.database.Stramenopiles= val;
+  }
+
 
   //read in the file and transform the content into a string
   fileUploaded(e){
@@ -98,15 +205,18 @@ export class HomeComponent implements OnInit {
       eValue = "1e-5";
     }
 
+
     this.onSearch(this.fileString, eValue);
     this.router.navigateByUrl('/results');
   }
 
   onSearch(searchSequence, eValue){
+   
 
     //change line seperators to @ so that it is easier to parse on the server-end
     let searchSequenceArray = searchSequence.split(/[\r\n]+/g);
     let processedSearchSequence = searchSequenceArray.join("@");
+    let database_list = this.generateDatabaseList();
 
     //generate query data from the given input
     let queryName = searchSequenceArray[0];
@@ -120,7 +230,7 @@ export class HomeComponent implements OnInit {
       sequence: querySequence,
       length: querySequence.length
     }
-    processedSearchSequence = "BLAST#"+eValue+"#"+processedSearchSequence
+    processedSearchSequence = "BLAST#"+eValue+"#"+processedSearchSequence+"#"+database_list
 
 
     //update the query data
@@ -138,6 +248,23 @@ export class HomeComponent implements OnInit {
 
     );
 
+  }
+
+  generateDatabaseList(){
+    let database_list = ""
+    let include = true;
+    for (let key in this.database){
+      if(this.database[key]==true){
+        for(let key2 in this.categories){
+          if(this.categories[key2]==key){
+            include = false;
+          }
+        }
+        if(include) database_list = database_list+key+"*"
+        include = true;
+      }
+    }
+    return database_list
   }
 
 }

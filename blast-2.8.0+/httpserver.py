@@ -2,7 +2,7 @@
  
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 import json
-import os
+import os, glob
 from Bio.Blast.Applications import NcbiblastpCommandline
 from Bio.Blast import NCBIXML
  
@@ -41,10 +41,12 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
        
 
        if(post_header == "BLAST"):
-          e_value = post_body.split("#")[1]
-          post_content = post_body.split("#")[2]
+          post_list = post_body.split("#")
+          e_value = post_list[1]
+          post_content = post_list[2]
+          database_info = post_list[3]
           self.end_headers()
-          data = self.performBlast(post_content, e_value)
+          data = self.performBlast(post_content, e_value, database_info)
           realData = json.dumps(data)
           print(realData)
 
@@ -68,6 +70,20 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
   def end_headers (self):
        self.send_header('Access-Control-Allow-Origin', '*')
        BaseHTTPRequestHandler.end_headers(self)
+  
+  def search_file_address (self, name):
+       address = ""
+       target_file = name+".fasta"
+       for x in os.walk("C:\\Users\\dsc12\Desktop\\Thesis\\blast-2.8.0+\\db\\custom_db\\Database"):
+          os.chdir(x[0])
+          a = x[0].split("\\")
+          print(a[len(a)-1])
+          file_list = []
+          for a_file in glob.glob("*.fasta"):
+               if target_file == a_file:
+                    address = x[0]+"\\"+target_file
+       return address
+               
 
 
   def findProteins(self, input):
@@ -78,26 +94,29 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
                parent_name = protein.split("&")[0]
                accession_number = protein.split("&")[1]
 
-               file_address = "C:/Users/dsc12/Desktop/Thesis/blast-2.8.0+/db/custom_db/"+parent_name+".fasta"
-               fasta_file=""
-               fasta_found = False
-               with open(file_address, "r") as f:
-                    for line in f:
-                         if line.find(">")==0:
+               #file_address = "C:/Users/dsc12/Desktop/Thesis/blast-2.8.0+/db/custom_db/"+parent_name+".fasta"
+               file_address = self.search_file_address(parent_name)
+               if(file_address != ""):
+                    fasta_file=""
+                    fasta_found = False
+                    with open(file_address, "r") as f:
+                         for line in f:
+                              if line.find(">")==0:
+                                   if fasta_found:
+                                        fasta_found = False
+                                        break
+                                   if line.find(accession_number) != -1:
+                                        fasta_found = True
                               if fasta_found:
-                                   fasta_found = False
-                                   break
-                              if line.find(accession_number) != -1:
-                                   fasta_found = True
-                         if fasta_found:
-                              fasta_file = fasta_file+line
-                    fasta_files = fasta_files + fasta_file
-                    f.close
+                                   fasta_file = fasta_file+line
+                         fasta_files = fasta_files + fasta_file
+                         f.close
        return fasta_files
        
 
 
-  def performBlast(self, input, e_value):
+  def performBlast(self, input, e_value, database_info):
+       
 
        words = input.split("@")
      #   print(words)
@@ -123,22 +142,40 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
                     f.write(word + "\n")
              f.close()
        
+       database_list = database_info.split("*")
 
-       with open("C:/Users/dsc12/Desktop/Thesis/blast-2.8.0+/db/custom_db/database_info.txt", "r") as f:
+       db_detail_list = []
+       for database in database_list:
+            file_path = "C:/Users/dsc12/Desktop/Thesis/blast-2.8.0+/db/custom_db/Processed_database_info/"+database+".txt"
+            if os.path.exists(file_path):
+               with open(file_path, "r") as f:
+                    for line in f:
+                         db_detail_list.append(line.rstrip())
+                    f.close()
+
+
+
+
+       with open("C:/Users/dsc12/Desktop/Thesis/blast-2.8.0+/selected_database.txt", "w+") as f:
+            for database in db_detail_list:
+                 f.write(database+"\n")
+            f.close()
+
+       with open("C:/Users/dsc12/Desktop/Thesis/blast-2.8.0+/selected_database.txt", "r") as f:
             for line in f:
                 database = line.rstrip()
-                print(database)
+                #print(database)
                 e_val = float(e_value)
                 blastp_cline = NcbiblastpCommandline(query="check1.fasta", db=database, evalue=e_val, outfmt=5, out= database+".xml")
                 blastp_cline()
             f.close()
 
        data = {"list":[], "query":[]}
-       with open("C:/Users/dsc12/Desktop/Thesis/blast-2.8.0+/db/custom_db/database_info.txt", "r") as f:
+       with open("C:/Users/dsc12/Desktop/Thesis/blast-2.8.0+/selected_database.txt", "r") as f:
             for line in f:
                 file_name = line.rstrip()
                 result_handle = open(file_name+".xml")
-                print(file_name)
+                #print(file_name)
                 blast_record = NCBIXML.read(result_handle)
                 E_VALUE_THRESH = 0.00001
 
