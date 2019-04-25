@@ -5,22 +5,7 @@
 </div>
 <br/>
 <br/>
-<!-- 
-<div class="container">
-  <div class="row">    
-      <div class="col-xs-8 col-xs-offset-2">
-        <div class="input-group">
-              <input type="hidden" name="search_param" value="all" id="search_param">         
-              <input #searchSequence type="text" style="width: 900px" class="form-control" name="x" placeholder="Search your sequence of interest in FASTA format...">
-              <span class="input-group-btn">
-                  <a routerLink="/results"><button class="btn btn-default" type="button" (click)="onSearch(searchSequence.value)">Search</button></a>
-              </span>
-          </div>
-      </div>
-  </div>
-</div> -->
 <div align="center" >
-  <!-- <h5 style="padding: 10px">Or</h5> -->
   <form (ngSubmit)="onSubmit(f)" #f="ngForm">
     <div class ="form-group">
       <h5>Upload protein sequence of interest in fasta format</h5>
@@ -59,6 +44,80 @@
       </div>
   </form>
   
+<div class="checkboxContainer1">
+  <div class="allCheckbox">
+      <mat-checkbox class="checkBox" [(ngModel)]="database.All"  (change)=onAllSelected($event)>All</mat-checkbox>
+  </div>
+  <div class="restCheckbox">
+    <div class="leftCheckbox">
+        <div class="level2">
+            <mat-checkbox class="checkBox" [(ngModel)]="database.Amoebozoa" (change)=onAmoebozoaSelected($event)>Amoebozoa</mat-checkbox>
+            <div class="level3">
+              <mat-checkbox class="checkBox" [(ngModel)]="database.Dictyostelium">Dictyostelium</mat-checkbox>
+              <mat-checkbox class="checkBox" [(ngModel)]="database.Entamoeba">Entamoeba</mat-checkbox>
+            </div>
+            <mat-checkbox class="checkBox" [(ngModel)]="database.Animals" (change)=onAnimalsSelected($event)>Animals</mat-checkbox>
+            <div class="level3">
+              <mat-checkbox class="checkBox" [(ngModel)]="database.Annelida">Annelida</mat-checkbox>
+              <mat-checkbox class="checkBox" [(ngModel)]="database.Arthropods">Arthropods</mat-checkbox>
+              <mat-checkbox class="checkBox" [(ngModel)]="database.Ascidians">Ascidians</mat-checkbox>
+              <mat-checkbox class="checkBox" [(ngModel)]="database.Cnidarian">Cnidarian</mat-checkbox>
+              <mat-checkbox class="checkBox" [(ngModel)]="database.Echinoderms">Echinoderms</mat-checkbox>
+              <mat-checkbox class="checkBox" [(ngModel)]="database.Flatworms">Flatworms</mat-checkbox>
+              <mat-checkbox class="checkBox" [(ngModel)]="database.Mollusks">Mollusks</mat-checkbox>
+              <mat-checkbox class="checkBox" [(ngModel)]="database.Nematodes">Nematodes</mat-checkbox>
+              <mat-checkbox class="checkBox" [(ngModel)]="database.Placozoans">Placozoans</mat-checkbox>
+              <mat-checkbox class="checkBox" [(ngModel)]="database.Rotifers">Rotifers</mat-checkbox>
+              <mat-checkbox class="checkBox" [(ngModel)]="database.Vertebrates">Vertebrates</mat-checkbox>
+              <mat-checkbox class="checkBox" [(ngModel)]="database.Animal_others">Others</mat-checkbox>
+            </div>
+            <mat-checkbox class="checkBox" [(ngModel)]="database.Apusozoa" (change)=onApusozoaSelected($event)>Apusozoa</mat-checkbox>
+            <div class="level3">
+              <mat-checkbox class="checkBox" [(ngModel)]="database.Thecamonas">Thecamonas</mat-checkbox>
+            </div>
+            <mat-checkbox class="checkBox" [(ngModel)]="database.Choanoflagellates" (change)=onChoanoflagellatesSelected($event)>Choanoflagellates</mat-checkbox>
+            <div class="level3">
+              <mat-checkbox class="checkBox" [(ngModel)]="database.Codonosigidae">Codonosigidae</mat-checkbox>
+            </div>
+        </div>
+    </div>
+    <div class="rightCheckbox">
+      <div class="level2">
+        <mat-checkbox class="checkBox" [(ngModel)]="database.Fungi" (change)=onFungiSelected($event)>Fungi</mat-checkbox>
+        <div class="level3">
+          <mat-checkbox class="checkBox" [(ngModel)]="database.Ascomycetes">Ascomycetes</mat-checkbox>
+          <mat-checkbox class="checkBox" [(ngModel)]="database.Basidiomycetes">Basidiomycetes</mat-checkbox>
+          <mat-checkbox class="checkBox" [(ngModel)]="database.Chytridiomycetes">Chytridiomycetes</mat-checkbox>
+          <mat-checkbox class="checkBox" [(ngModel)]="database.Fungi_others">Others</mat-checkbox>
+        </div>
+        <mat-checkbox class="checkBox" [(ngModel)]="database.Ichthyosporea" (change)=onIchthyosporeaSelected($event)>Ichthyosporea</mat-checkbox>
+        <div class="level3">
+          <mat-checkbox class="checkBox" [(ngModel)]="database.Capsaspora">Capsaspora</mat-checkbox>
+          <mat-checkbox class="checkBox" [(ngModel)]="database.Ichthyosporea_others">Others</mat-checkbox>
+        </div>
+        <mat-checkbox class="checkBox" [(ngModel)]="database.Plants" (change)=onPlantsSelected($event)>Plants</mat-checkbox>
+        <div class="level3">
+          <mat-checkbox class="checkBox" [(ngModel)]="database.Eudicots">Eudicots</mat-checkbox>
+          <mat-checkbox class="checkBox" [(ngModel)]="database.Green_algae">Green Algae</mat-checkbox>
+          <mat-checkbox class="checkBox" [(ngModel)]="database.Gymnosperms">Gymnosperms</mat-checkbox>
+          <mat-checkbox class="checkBox" [(ngModel)]="database.Monocots">Monocots</mat-checkbox>
+          <mat-checkbox class="checkBox" [(ngModel)]="database.Mosses">Mosses</mat-checkbox>
+          <mat-checkbox class="checkBox" [(ngModel)]="database.Spikemosses">Spikemosses</mat-checkbox>
+          <mat-checkbox class="checkBox" [(ngModel)]="database.Plant_others">Others</mat-checkbox>
+        </div>
+        <mat-checkbox class="checkBox" [(ngModel)]="database.Protists" (change)=onProtistsSelected($event)>Protists</mat-checkbox>
+        <div class="level3">
+          <mat-checkbox class="checkBox" [(ngModel)]="database.Aveolates">Aveolates</mat-checkbox>
+          <mat-checkbox class="checkBox" [(ngModel)]="database.Euglenozoa">Euglenozoa</mat-checkbox>
+          <mat-checkbox class="checkBox" [(ngModel)]="database.Red_algae">Red Algae</mat-checkbox>
+          <mat-checkbox class="checkBox" [(ngModel)]="database.Stramenopiles">Stramenopiles</mat-checkbox>
+          <mat-checkbox class="checkBox" [(ngModel)]="database.Protists_others">Others</mat-checkbox>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>
+<!-- 
 </div>
 <div class="checkboxContainer">
   <div class="level1">
@@ -125,26 +184,4 @@
     </div>
   </div>
 </div>
-<!-- 
-<div class="checkboxContainer">
-  <div class="level1">
-      <mat-checkbox class="checkBox" [(ngModel)]="database.All"  (change)=onAllSelected($event)>All</mat-checkbox>
-      <div class="level2">
-        <mat-checkbox class="checkBox" [(ngModel)]="database.Amoebozoa">Amoebozoa</mat-checkbox>
-        <mat-checkbox class="checkBox" [(ngModel)]="database.SAR">SAR (Stramenopila/Alveolata/Rhizaria)</mat-checkbox>
-        <mat-checkbox class="checkBox" [(ngModel)]="database.Amoebozoa">Amoebozoa</mat-checkbox>
-        <mat-checkbox class="checkBox" [(ngModel)]="database.Other">Other (Apusozoa, Cryptomonads, Haptophytes)</mat-checkbox>
-        <mat-checkbox class="checkBox" [(ngModel)]="database.Opisthokonts" (change)=onOpisthokontsSelected($event)>Opisthokonts</mat-checkbox>
-      <div class="level3">
-          <mat-checkbox class="checkBox" [(ngModel)]="database.Fungi" (change)=onFungiSelected($event)>Fungi</mat-checkbox>
-          <div class="level4">
-            <mat-checkbox class="checkBox" [(ngModel)]="database.Ascomycota">Ascomycota</mat-checkbox>
-            <mat-checkbox class="checkBox" [(ngModel)]="database.Basidiomycota">Basidiomycota</mat-checkbox>
-            <mat-checkbox class="checkBox" [(ngModel)]="database.Other_fungi">Other fungi</mat-checkbox>
-          </div>
-          <mat-checkbox class="checkBox" [(ngModel)]="database.Metazoans_Choanoflagellate_Ichthyosporea">Metazoans + Choanoflagellate + Ichthyosporea</mat-checkbox>
-      </div>
-        <mat-checkbox class="checkBox" [(ngModel)]="database.Plantae">Plantae</mat-checkbox>
-    </div>
-  </div>
-</div> -->
+ -->

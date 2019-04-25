@@ -97,3 +97,8 @@
 .color-box-container{
     text-align: center;
 }
+
+.backButton{
+    display: flex;
+    justify-content: center;
+}

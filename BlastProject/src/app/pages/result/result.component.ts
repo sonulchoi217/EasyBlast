@@ -13,6 +13,7 @@ export class ResultComponent implements OnInit, OnDestroy {
   resultData: ResultData[] = [];
   queryData: QueryData[] = [];
   loaded = false;
+  resultTab = true;
   queryName = "";
   queryLength =1000;
   std = 1000;
@@ -55,6 +56,15 @@ export class ResultComponent implements OnInit, OnDestroy {
   }
   
 
+  onTabClick(){
+    this.resultTab = !this.resultTab;
+  }
+
+  onDetailClick(seqName){
+    console.log("detail click here");
+    this.dataTransferService.updateDetail(seqName);
+    this.onTabClick();
+  }
   onDownloadClick(){
     let fastaContent =""
     // "protein#" is used in the python server to perform the appropriate operation
@@ -97,24 +107,6 @@ export class ResultComponent implements OnInit, OnDestroy {
       },
       (error) => console.log(error)
     );
-
-    
-
-    // let fastaContent =""
-
-    // for(let seqName in this.seqToDownload){
-    //   if(this.seqToDownload[seqName]){
-    //     let seq = this.dataTransferService.getData(seqName)[1].sbjct;
-    //     //break long sequence of string into fasta format (80 char per line)
-    //     let fastaSeq = this.convertToFasta(seq);
-    //     fastaContent = fastaContent+seqName+"\n"+fastaSeq+"\n"        
-    //   }
-    // }
-
-    // let blob = new Blob([fastaContent], {type: "text/plain;charset=utf-8"});
-    // FileSaver.saveAs(blob, "result.fasta");
-
-
   }
 
   onSelectAll(){

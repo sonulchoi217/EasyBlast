@@ -32,3 +32,34 @@ input.ng-invalid.ng-touched{
     margin: auto;
     width: 50%;
 }
+
+.checkboxContainer1{
+    position: relative;
+    width: 30%;
+    left: 100px;
+}
+
+.allCheckbox{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    right: 100px;
+}
+
+.restCheckbox{
+    display: flex;
+}
+
+.leftCheckbox{
+    display: flex;
+    flex:1;
+    flex-direction: column;
+    text-align: left;
+}
+
+.rightCheckbox{
+    display: flex;
+    flex:1;
+    flex-direction: column;
+    text-align: left;
+}

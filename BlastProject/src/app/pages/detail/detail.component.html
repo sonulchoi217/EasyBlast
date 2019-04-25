@@ -1,66 +1,63 @@
-<div style="text-align:center">
-    <h1 class="display-1" style="padding: 20px">Easy BLAST</h1>
-    <h4>Running BLAST has never been this easy</h4>
-</div>
-<br/>
-
-<div class = "resultBoxContainer">
-  <h1>{{parentName}}</h1>
-  <br/>
-  <h3>{{sequenceName}}</h3>
-  <br/>
-  <div class="resultBox">
-    <div class="resultBoxName">
-      <p> <b>E-Value: </b></p>
-      <p> <b>Length: </b></p>
-      <p> <b>Sequence: </b></p>
-    </div>
-    <div class="resultBoxData">
-      <p>{{result.e_value}}</p>
-      <p>{{result.align_length}}</p>
-      <div class="resultBoxData" *ngFor= "let part of sequenceArray; let i = index">
-        <p class="monoSpace">{{sequenceArray[i]}}</p>
+<div *ngIf = "loaded">
+    <div class = "resultBoxContainer">
+        <h1>{{parentName}}</h1>
+        <br/>
+        <h3>{{sequenceName}}</h3>
+        <br/>
+        <div class="resultBox">
+          <div class="resultBoxName">
+            <p> <b>E-Value: </b></p>
+            <p> <b>Length: </b></p>
+            <p> <b>Sequence: </b></p>
+          </div>
+          <div class="resultBoxData">
+            <p>{{result.e_value}}</p>
+            <p>{{result.align_length}}</p>
+            <div class="resultBoxData" *ngFor= "let part of sequenceArray; let i = index">
+              <p class="monoSpace">{{sequenceArray[i]}}</p>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+      
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      
+      <div class="matchContainer">
+        <h4>High-Scoring Pairs</h4>
+        <br/>
+        <p class="monoSpace">{{"Score= "+ result.score +"; E-value= "+ result.e_value}}</p>
+        <p class="monoSpace">{{"Query: region aligned - "+ result.query_start +"..." + (result.query_start+result.align_length)}}</p>
+        <p class="monoSpace">{{"Hit: region aligned - "+ result.sbjct_start +"..." + (result.sbjct_start+result.align_length)}}</p>
+        <p class="monoSpace">{{"Alignment: Length= "+ result.align_length + "; Identities = "+result.identities +"; Positives = " + result.positives+"; Gaps = " + result.gaps}}</p>
+        <br/>
+      
+        <div class="matchRow" *ngFor= "let part of sequenceArray; let i = index">
+          <div class="matchNameColumn">
+            <p class="monoSpace">Query</p>
+            <p class="monoSpace">{{" "}} </p>
+            <p class="monoSpace">Sbjct</p>      
+          </div>
+          <div class="matchSequenceColumn">
+            <p class="monoSpace">{{queryArray[i]}}</p>
+            <p class="monoSpace">{{matchArray[i]}}</p>
+            <p class="monoSpace">{{sequenceArray[i]}}</p>
+          </div>
+          <br/>
+        </div>
+      </div>
+      
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
 </div>
 
-<br/>
-<br/>
-<br/>
-<br/>
-
-<div class="matchContainer">
-  <h4>High-Scoring Pairs</h4>
-  <br/>
-  <p class="monoSpace">{{"Score= "+ result.score +"; E-value= "+ result.e_value}}</p>
-  <p class="monoSpace">{{"Query: region aligned - "+ result.query_start +"..." + (result.query_start+result.align_length)}}</p>
-  <p class="monoSpace">{{"Hit: region aligned - "+ result.sbjct_start +"..." + (result.sbjct_start+result.align_length)}}</p>
-  <p class="monoSpace">{{"Alignment: Length= "+ result.align_length + "; Identities = "+result.identities +"; Positives = " + result.positives+"; Gaps = " + result.gaps}}</p>
-  <br/>
-
-  <div class="matchRow" *ngFor= "let part of sequenceArray; let i = index">
-    <div class="matchNameColumn">
-      <p class="monoSpace">Query</p>
-      <p class="monoSpace">{{" "}} </p>
-      <p class="monoSpace">Sbjct</p>      
-    </div>
-    <div class="matchSequenceColumn">
-      <p class="monoSpace">{{queryArray[i]}}</p>
-      <p class="monoSpace">{{matchArray[i]}}</p>
-      <p class="monoSpace">{{sequenceArray[i]}}</p>
-    </div>
-    <br/>
-  </div>
-</div>
-
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>

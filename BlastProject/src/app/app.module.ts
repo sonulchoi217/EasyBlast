@@ -10,6 +10,7 @@ import { DetailComponent } from './pages/detail/detail.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { FormsModule } from '@angular/forms';
+import {MatTreeModule} from '@angular/material/tree';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     FormsModule,
     MatCheckboxModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatTreeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

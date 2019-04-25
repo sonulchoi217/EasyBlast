@@ -9,6 +9,9 @@ import { DataTransferService, ResultData, SVG } from 'src/app/services/data-tran
 })
 export class DetailComponent implements OnInit, OnDestroy {
 
+  subscription1: Subscription;
+  loaded = false;
+
   subscription: Subscription;
   sequenceName: string;
   parentName: string;
@@ -17,17 +20,28 @@ export class DetailComponent implements OnInit, OnDestroy {
   queryArray: string[]
   matchArray: string[]
   constructor(private route: ActivatedRoute, private dataTransferService: DataTransferService) { }
-  ngOnInit() {
-    this.subscription = this.route.params.subscribe(params => {
-      this.sequenceName = params['sequenceName']
-    })
 
-    this.requestData(this.sequenceName);
+  ngOnInit() {
+    // this.subscription = this.route.params.subscribe(params => {
+    //   this.sequenceName = params['sequenceName']
+    // })
+
+    // this.requestData(this.sequenceName);
+    console.log("Detail loaded");
+    this.subscription1 = this.dataTransferService.detailUpdated.subscribe(
+      (sequenceName: string) =>{
+        this.sequenceName = sequenceName;
+        this.requestData(this.sequenceName);
+        console.log(this.sequenceName);
+        this.loaded = true;
+      }
+    );
   }
 
   requestData(seqName: string){
 
     let data: [string, SVG]  = this.dataTransferService.getData(seqName);
+    console.log("HIHIHI");
     console.log(data);
 
     this.parentName = data[0];
@@ -46,7 +60,8 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    this.subscription.unsubscribe();
+    //this.subscription.unsubscribe();
+    this.subscription1.unsubscribe();
   }
 
 }

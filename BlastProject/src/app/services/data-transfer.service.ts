@@ -37,6 +37,7 @@ export class DataTransferService {
   map = new Map();
   dataChanged = new Subject <ResultData[]>();
   queryUpdated = new Subject<QueryData[]>();
+  detailUpdated = new Subject<string>();
   constructor() { }
 
   saveData(blastData){
@@ -63,6 +64,11 @@ export class DataTransferService {
     console.log("getData called")
 
     return this.map.get(seqName);
+  }
+
+  updateDetail(detailData){
+    console.log("updated called"+detailData);
+    this.detailUpdated.next(detailData);
 
   }
 
