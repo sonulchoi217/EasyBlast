@@ -91,8 +91,28 @@ There are several advantages that Easy BLAST have over the online NCBI BLAST too
 
 ### Get Started
 
-Start by uploading a fasta file of your interest to Easy BLAST website.
-![image1](/images/slide1.png "Upload")
+1. Start by uploading a fasta file of your interest to Easy BLAST website.
+
+![image1](/images/slide1.png "1")
+
+
+
+2. Define the area of search by selecting databases and set e-value. Click submit.
+
+![image2](/images/slide2.png "2")
+
+
+
+3. BLAST output is displayed. You can view key information about an alignment by hovering your cursor above the alignment. You can also download output of your interset in a fasta format by marking the checkbox and clicking "Download Selected Sequences".
+
+![image3](/images/slide3.png "3")
+
+
+
+4. You can also obtain more detail information about a specific alignment by clicking the alignment.
+
+![image4](/images/slide4.png "4")
+
 
 
 ### Feedback
