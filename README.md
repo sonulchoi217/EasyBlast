@@ -92,7 +92,7 @@ There are several advantages that Easy BLAST have over the online NCBI BLAST too
 ### Get Started
 
 Start by uploading a fasta file of your interest to Easy BLAST website.
-
+![image1](/images/slide1.png "Upload")
 
 
 ### Feedback
