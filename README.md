@@ -23,11 +23,18 @@ The resulting BLAST output will look something like this:
 
 ### Install
 
-Angular 7 is used to build the front end website while Python 2.7 is used to build the server.
-As Easy BLAST is an online application, no additional installation is needed.
-However, if you desire to install the program on your local machine for any reason, the instructions below describes evey step necessary to run the server.
+Angular 7 is used to build the front end website while Python 2.7 is used to build the server. Using chrome is highly recommended for the best experience.
 
-Install dependencies for Angular project by running the following command at the Angular project's root directory (a.k.a. at /BlastProject):
+You can download the complete installed version of the program in a virtual machine, so no additional installation is needed. (Email sonulchoi217@gmail.com for more details about the virtual machine).
+
+However, if you desire to install the program on your local machine yourself for any reason, the instructions below describes evey step necessary to run the server.
+
+First, clone this github repository:
+```python
+git clone https://github.com/sonulchoi217/EasyBlast.git
+```
+
+Go to the Angular project's root directory (a.k.a. at /EasyBlast/BlastProject) and install dependencies for Angular project by running the following command:
 ```python
 npm install
 ```
@@ -35,26 +42,24 @@ npm install
 Install python package that are used in the server side by running the following command:
 ```python
 pip install biopython
-pip install SimpleHMMER
-
 ```
 
-Download fasta files of all Eukaryotic genome in the following link: http://supfam.org/SUPERFAMILY/cgi-bin/taxonomic_gen_list.cgi#model_eukaryotes.
+Download fasta files of all Eukaryotic genome in the following link: http://supfam.org/SUPERFAMILY/cgi-bin/taxonomic_gen_list.cgi#model_eukaryotes. If you use the virtual machine, all the fasta file are already downloaded
 (The fasta files needs to be installed in /EasyBlast/blast-2.8.0+/db/custom_db/ directory)
 
-
-HMMER and Pfam database also need to be installed to to find protein domains:
-
+Once the database is downloaded, convert the database into a format that Blast+ uses by running the following command at /EasyBlast/blast-2.8.0+/ directory:
+```python
+python set_database.py
+```
+(HMMER and Pfam database is not implemented yet)
+~~HMMER and Pfam database also need to be installed to to find protein domains:
 Link to download HMMER: http://hmmer.org/download.html
-
 For Windows user,
 Instructions on how to install HMMER on Windows: https://www.youtube.com/watch?v=MBtbgZ7OmNM
-
 After downloading HMMER, make sure to update the path so that the commands can be used by the program.
+Link to download Pfam database: ftp://ftp.ebi.ac.uk/pub/databases/Pfam/releases/Pfam32.0/Pfam-A.hmm.gz\ ~~
 
-Link to download Pfam database: ftp://ftp.ebi.ac.uk/pub/databases/Pfam/releases/Pfam32.0/Pfam-A.hmm.gz\
-
-After all the installation is done, open up  a command line interface and locate to /EasyBlast/BlastProject/. 
+After all the installation is done, open up a command line interface and locate to /EasyBlast/BlastProject/. 
 Run the following command:
 
 ```python
@@ -71,7 +76,7 @@ python httpserver.py
 ```
 This will host the Python server on your local machine.
 
-Now you are all set to use the Easy BLAST!
+Navigate to http://localhost:4200 using chrome. Now you are all set to use the Easy BLAST!
 
 
 ### Advantages
@@ -92,7 +97,10 @@ Start by uploading a fasta file of your interest to Easy BLAST website.
 
 ### Feedback
 
-Please send me an email with your feedback to dsc12013@mymail.pomona.edu.
+Please send me an email with your feedback to sonulchoi217@gmail.com.
 I'll try to respond to issues within 24 hours.
 
 ### Errors
+
+- If a search is taking too long, it is possible that the server is not responding. In that case, try restarting the python server. 
+- If you can't download some of the output sequences, it might be because the regular expression used in onDownloadClick() function in result.component.ts is not matching.
